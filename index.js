@@ -16,16 +16,33 @@ let parsedNucleusIncrease = parseFloat(nucleusIncrease.innerHTML);
 
 let atom = document.querySelector('#atom');
 let atomCost = document.querySelector(".atom_cost");
-let parsedAtomCost = parseFloat(atomCost.innerHTML);
+let parsedAtomCost = 10000000;
 let atomLevel = document.querySelector(".atom_level");
 let atomIncrease = document.querySelector(".atom_increase");
 let parsedAtomIncrease = parseFloat(atomIncrease.innerHTML);
 
-let intervalID;
+let intervalID = setInterval(gameLoop, 0.1);
+let intervalID1 = setInterval(oneSecondLoop, 1000);
 
 let qpc = 1;
 let qps = 0;
 let aps = 0;
+
+function gameLoop(){
+    if(parsedQuark >= 1000000){
+        quark.innerHTML = (parsedQuark/1000000).toFixed(2) + "M";
+    }
+}
+
+function oneSecondLoop(){
+    quark.innerHTML = Math.round(parsedQuark += qps);
+    for(i = 0; i < aps; i++){
+        accelLevel.innerHTML ++;
+        qpc += parsedAccelIncrease;
+        parsedAccelIncrease = parseFloat((parsedAccelIncrease * 1.07).toFixed(2));
+        accelIncrease.innerHTML = parsedAccelIncrease;
+    }
+}
 
 function incrementQuark(){
     quark.innerHTML = Math.round(parsedQuark += qpc);
@@ -37,13 +54,17 @@ function buyAccel(){
 
         accelLevel.innerHTML ++;
 
+        qpc += parsedAccelIncrease;
         parsedAccelIncrease = parseFloat((parsedAccelIncrease * 1.07).toFixed(2));
         accelIncrease.innerHTML = parsedAccelIncrease;
-        qpc += parsedAccelIncrease;
 
         parsedAccelCost *= 1.2;
-        accelCost.innerHTML = Math.round(parsedAccelCost);
-
+        if(parsedAccelCost >= 1000000){
+            accelCost.innerHTML = (parsedAccelCost/1000000).toFixed(2) + "M";
+        } else {
+            accelCost.innerHTML = Math.round(parsedAccelCost);
+        }
+        
         if(accelLevel.innerHTML >= 10){
             nucleus.style.cssText = "display: flex;";
         }
@@ -56,12 +77,20 @@ function buyNucleus(){
 
         nucleusLevel.innerHTML ++;
 
-        qps += 1;
-        clearInterval(intervalID);
-        intervalID = setInterval(nucleusLoop, 1000);
+        qps += parsedNucleusIncrease;
+        if(parsedNucleusIncrease <= 1000){
+            parsedNucleusIncrease = parseFloat((parsedNucleusIncrease * 3).toFixed(2));
+        } else {
+            parsedNucleusIncrease = parseFloat((parsedNucleusIncrease * 1.05).toFixed(2));
+        }
+        nucleusIncrease.innerHTML = parsedNucleusIncrease;
 
-        parsedNucleusCost *= 1.18;
-        nucleusCost.innerHTML = Math.round(parsedNucleusCost);
+        parsedNucleusCost *= 1.2;
+        if(parsedNucleusCost >= 1000000){
+            nucleusCost.innerHTML = (parsedNucleusCost/1000000).toFixed(2) + "M";
+        } else {
+            nucleusCost.innerHTML = Math.round(parsedNucleusCost);
+        }
 
         if(nucleusLevel.innerHTML >= 10){
             atom.style.cssText = "display: flex;";
@@ -76,20 +105,12 @@ function buyAtom(){
         atomLevel.innerHTML ++;
 
         aps += 1;
-        clearInterval(intervalID);
-        intervalID = setInterval(atomLoop, 1000);
 
         parsedAtomCost *= 1.5;
-        atomCost.innerHTML = Math.round(parsedAtomCost);
-    }
-}
-
-function nucleusLoop(){
-    quark.innerHTML = Math.round(parsedQuark += qps);
-}
-
-function atomLoop(){
-    for(i = 0; i < atomLevel.innerHTML; i++){
-        buyAccel();
+        if(parsedAtomCost >= 1000000){
+            atomCost.innerHTML = (parsedAtomCost/1000000).toFixed(2) + "M";
+        } else {
+            atomCost.innerHTML = Math.round(parsedAtomCost);
+        }
     }
 }
