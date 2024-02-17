@@ -37,7 +37,7 @@ function buyAccel(){
 
         accelLevel.innerHTML ++;
 
-        parsedAccelIncrease = parseFloat((parsedAccelIncrease * 1.03).toFixed(2));
+        parsedAccelIncrease = parseFloat((parsedAccelIncrease * 1.07).toFixed(2));
         accelIncrease.innerHTML = parsedAccelIncrease;
         qpc += parsedAccelIncrease;
 
