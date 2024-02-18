@@ -20,6 +20,22 @@ body {
     margin-bottom: 30px;
 }
 
+.prestige {
+    display: none;
+    align-items: center;
+    justify-content: space-between;
+    height: 100px;
+    width: 200px;
+    border: 5px solid white;
+    border-radius: 5px;
+    padding: 10px 20px;
+    cursor: pointer;
+}
+
+.prestige_text {
+    display: flex;
+}
+
 .quark_img {
     width: 300px;
 }
@@ -92,4 +108,8 @@ body {
 
 #atom {
     display: none;
+}
+
+#game_over_text {
+    text-align: center;
 }
