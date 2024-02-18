@@ -9,7 +9,7 @@ let parsedAccelIncrease = parseFloat(accelIncrease.innerHTML);
 
 let nucleus = document.querySelector('#nucleus');
 let nucleusCost = document.querySelector(".nucleus_cost");
-let parsedNucleusCost = parseFloat(nucleusCost.innerHTML);
+let parsedNucleusCost = 5000;
 let nucleusLevel = document.querySelector(".nucleus_level");
 let nucleusIncrease = document.querySelector(".nucleus_increase");
 let parsedNucleusIncrease = parseFloat(nucleusIncrease.innerHTML);
@@ -28,9 +28,23 @@ let qpc = 1;
 let qps = 0;
 let aps = 0;
 
+let prestige = document.querySelector(".prestige");
+
 function gameLoop(){
-    if(parsedQuark >= 1000000){
+    if(parsedQuark >= 1000000000000){
+        quark.innerHTML = (parsedQuark/1000000000000).toFixed(2) + "T";
+    } else if(parsedQuark >= 1000000000){
+        quark.innerHTML = (parsedQuark/1000000000).toFixed(2) + "B";
+    } else if(parsedQuark >= 1000000){
         quark.innerHTML = (parsedQuark/1000000).toFixed(2) + "M";
+    } else if(parsedQuark >= 1000){
+        quark.innerHTML = (parsedQuark/1000).toFixed(2) + "K";
+    } else {
+        quark.innerHTML = Math.round(parsedQuark);
+    }
+
+    if(parsedQuark >=10000000000){
+        prestige.style.display = "block";
     }
 }
 
@@ -39,7 +53,7 @@ function oneSecondLoop(){
     for(i = 0; i < aps; i++){
         accelLevel.innerHTML ++;
         qpc += parsedAccelIncrease;
-        parsedAccelIncrease = parseFloat((parsedAccelIncrease * 1.07).toFixed(2));
+        parsedAccelIncrease = parseFloat((parsedAccelIncrease).toFixed(2));
         accelIncrease.innerHTML = parsedAccelIncrease;
     }
 }
@@ -56,11 +70,23 @@ function buyAccel(){
 
         qpc += parsedAccelIncrease;
         parsedAccelIncrease = parseFloat((parsedAccelIncrease * 1.07).toFixed(2));
-        accelIncrease.innerHTML = parsedAccelIncrease;
+        if(parsedAccelIncrease >= 1000000){
+            accelIncrease = (parsedAccelIncrease/1000000).toFixed(2) + "M";
+        } else if(parsedAccelIncrease >= 1000){
+            accelIncrease = (parsedAccelIncrease/1000).toFixed(2) + "K";
+        } else {
+            accelIncrease.innerHTML = parsedAccelIncrease;
+        }
 
         parsedAccelCost *= 1.2;
-        if(parsedAccelCost >= 1000000){
+        if(parsedAccelCost >= 1000000000000){
+            accelCost.innerHTML = (parsedAccelCost/1000000000000).toFixed(2) + "T";
+        } else if(parsedAccelCost >= 1000000000){
+            accelCost.innerHTML = (parsedAccelCost/1000000000).toFixed(2) + "B";
+        } else if(parsedAccelCost >= 1000000){
             accelCost.innerHTML = (parsedAccelCost/1000000).toFixed(2) + "M";
+        } else if(parsedAccelCost >= 1000){
+            accelCost.innerHTML = (parsedAccelCost/1000).toFixed(2) + "K";
         } else {
             accelCost.innerHTML = Math.round(parsedAccelCost);
         }
@@ -81,13 +107,26 @@ function buyNucleus(){
         if(parsedNucleusIncrease <= 1000){
             parsedNucleusIncrease = parseFloat((parsedNucleusIncrease * 3).toFixed(2));
         } else {
-            parsedNucleusIncrease = parseFloat((parsedNucleusIncrease * 1.05).toFixed(2));
+            parsedNucleusIncrease = parseFloat((parsedNucleusIncrease * 0.8).toFixed(2));
         }
-        nucleusIncrease.innerHTML = parsedNucleusIncrease;
+
+        if(parsedNucleusIncrease >= 1000000){
+            nucleusIncrease = (parsedNucleusIncrease/1000000).toFixed(2) + "M";
+        } else if(parsedNucleusIncrease >= 1000){
+            nucleusIncrease = (parsedNucleusIncrease/1000).toFixed(2) + "K";
+        } else {
+            nucleusIncrease.innerHTML = parsedNucleusIncrease;
+        }
 
         parsedNucleusCost *= 1.2;
-        if(parsedNucleusCost >= 1000000){
+        if(parsedNucleusCost >= 1000000000000){
+            nucleusCost.innerHTML = (parsedNucleusCost/1000000000000).toFixed(2) + "T";
+        } else if(parsedNucleusCost >= 1000000000){
+            nucleusCost.innerHTML = (parsedNucleusCost/1000000000).toFixed(2) + "B";
+        } else if(parsedNucleusCost >= 1000000){
             nucleusCost.innerHTML = (parsedNucleusCost/1000000).toFixed(2) + "M";
+        } else if(parsedNucleusCost >= 1000){
+            nucleusCost.innerHTML = (parsedNucleusCost/1000).toFixed(2) + "K";
         } else {
             nucleusCost.innerHTML = Math.round(parsedNucleusCost);
         }
@@ -107,8 +146,14 @@ function buyAtom(){
         aps += 1;
 
         parsedAtomCost *= 1.5;
-        if(parsedAtomCost >= 1000000){
+        if(parsedAtomCost >= 1000000000000){
+            atomCost.innerHTML = (parsedAtomCost/1000000000000).toFixed(2) + "T";
+        } else if(parsedAtomCost >= 1000000000){
+            atomCost.innerHTML = (parsedAtomCost/1000000000).toFixed(2) + "B";
+        } else if(parsedAtomCost >= 1000000){
             atomCost.innerHTML = (parsedAtomCost/1000000).toFixed(2) + "M";
+        } else if(parsedAtomCost >= 1000){
+            atomCost.innerHTML = (parsedAtomCost/1000).toFixed(2) + "K";
         } else {
             atomCost.innerHTML = Math.round(parsedAtomCost);
         }
