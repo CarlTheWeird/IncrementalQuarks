@@ -52,7 +52,7 @@ function oneSecondLoop(){
     quark.innerHTML = Math.round(parsedQuark += qps);
     for(i = 0; i < aps; i++){
         accelLevel.innerHTML ++;
-        qpc += parsedAccelIncrease;
+        qpc += parsedAccelIncrease*1.03;
         parsedAccelIncrease = parseFloat((parsedAccelIncrease).toFixed(2));
         accelIncrease.innerHTML = parsedAccelIncrease;
     }
@@ -145,7 +145,7 @@ function buyAtom(){
 
         aps += 1;
 
-        parsedAtomCost *= 1.5;
+        parsedAtomCost *= 1.35;
         if(parsedAtomCost >= 1000000000000){
             atomCost.innerHTML = (parsedAtomCost/1000000000000).toFixed(2) + "T";
         } else if(parsedAtomCost >= 1000000000){
