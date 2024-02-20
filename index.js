@@ -29,6 +29,7 @@ let qps = 0;
 let aps = 0;
 
 let prestige = document.querySelector(".prestige");
+let prestige_cost = 10000000000;
 let prestige_amount = 0;
 let multiplier = 1;
 
@@ -45,7 +46,7 @@ function gameLoop(){
         quark.innerHTML = Math.round(parsedQuark);
     }
 
-    if(parsedQuark >=10000000000){
+    if(parsedQuark >= prestige_cost){
         prestige.style.display = "block";
     }
 }
@@ -175,6 +176,7 @@ function prestige(){
     prestige_amount++;
     quark.innerHTML = 0;
     resetLevels();
+    prestige_cost*10;
     for(i = 0; i < prestige_amount; i++){
         multiplier*1.1;
     }
