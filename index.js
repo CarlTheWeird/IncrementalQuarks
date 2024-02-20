@@ -21,6 +21,13 @@ let atomLevel = document.querySelector(".atom_level");
 let atomIncrease = document.querySelector(".atom_increase");
 let parsedAtomIncrease = parseFloat(atomIncrease.innerHTML);
 
+let molecule = document.querySelector('#molecule');
+let moleCost = document.querySelector(".mole_cost");
+let parsedMoleCost = 10000000000;
+let moleLevel = document.querySelector(".mole_level");
+let moleIncrease = document.querySelector(".mole_increase");
+let parsedMoleIncrease = parseFloat(atomIncrease.innerHTML);
+
 let intervalID = setInterval(gameLoop, 1);
 let intervalID1 = setInterval(oneSecondLoop, 1000);
 
@@ -169,6 +176,29 @@ function buyAtom(){
     }
 }
 
+function buyMolecule(){
+    if(parsedQuark >= parsedMoleCost){
+        quark.innerHTML = Math.round(parsedQuark -= parsedMoleCost);
+
+        moleLevel.innerHTML ++;
+
+        nps += 1*multiplier;
+
+        parsedMoleCost *= 2;
+        if(parsedMoleCost >= 1000000000000){
+            moleCost.innerHTML = (parsedMoleCost/1000000000000).toFixed(2) + "T";
+        } else if(parsedMoleCost >= 1000000000){
+            moleCost.innerHTML = (parsedMoleCost/1000000000).toFixed(2) + "B";
+        } else if(parsedMoleCost >= 1000000){
+            atomCost.innerHTML = (parsedMoleCost/1000000).toFixed(2) + "M";
+        } else if(parsedMoleCost >= 1000){
+            moleCost.innerHTML = (parsedMoleCost/1000).toFixed(2) + "K";
+        } else {
+            moleCost.innerHTML = Math.round(parsedMoleCost);
+        }
+    }
+}
+
 function resetLevels(){
     accelLevel.innerHTML = 0;
     nucleusLevel.innerHTML = 0;
@@ -179,12 +209,16 @@ function resetLevels(){
 }
 
 function doPrestige(){
-    prestige.style.display = "none";
-    prestige_amount++;
-    parsedQuark = 0;
-    resetLevels();
-    prestige_cost*10;
-    for(i = 0; i < prestige_amount; i++){
-        multiplier*1.1;
+    if(prestige_amount < 5){
+        prestige.style.display = "none";
+        prestige_amount++;
+        parsedQuark = 0;
+        resetLevels();
+        prestige_cost*10;
+        for(i = 0; i < prestige_amount; i++){
+            multiplier*1.1;
+        }
+    } else {
+        window.location = "game_over.html";
     }
 }
