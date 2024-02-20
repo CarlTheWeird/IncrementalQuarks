@@ -223,14 +223,21 @@ function resetLevels(){
 
 function resetCost(){
     accelCost.innerHTML = 10;
-    nucleusCost.innerHTML = 5000;
-    atomCost.innerHTML = 10000000;
-    moleCost.innerHTML = 10000000000;
+    nucleusCost.innerHTML = 5 + "K";
+    atomCost.innerHTML = 10 + "M";
+    moleCost.innerHTML = 10 + "B";
+    parsedAccelCost = 10;
+    parsedNucleusCost = 5000;
+    parsedAtomCost = 10000000;
+    parsedMoleCost = 10000000000;
 }
 
 function doPrestige(){
     if(prestige_amount < 5){
         prestige.style.display = "none";
+        nucleus.style.display = "none";
+        atom.style.display = "none";
+        molecule.style.display = "none";
         prestige_amount++;
         parsedQuark = 0;
         resetLevels();
