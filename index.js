@@ -21,7 +21,7 @@ let atomLevel = document.querySelector(".atom_level");
 let atomIncrease = document.querySelector(".atom_increase");
 let parsedAtomIncrease = parseFloat(atomIncrease.innerHTML);
 
-let intervalID = setInterval(gameLoop, 0.1);
+let intervalID = setInterval(gameLoop, 1);
 let intervalID1 = setInterval(oneSecondLoop, 1000);
 
 let qpc = 1;
@@ -29,6 +29,8 @@ let qps = 0;
 let aps = 0;
 
 let prestige = document.querySelector(".prestige");
+let prestige_amount = 0;
+let multiplier = 1;
 
 function gameLoop(){
     if(parsedQuark >= 1000000000000){
@@ -52,7 +54,7 @@ function oneSecondLoop(){
     quark.innerHTML = Math.round(parsedQuark += qps);
     for(i = 0; i < aps; i++){
         accelLevel.innerHTML ++;
-        qpc += parsedAccelIncrease*1.03;
+        qpc += parsedAccelIncrease*1.3*multiplier;
         parsedAccelIncrease = parseFloat((parsedAccelIncrease).toFixed(2));
         accelIncrease.innerHTML = parsedAccelIncrease;
     }
@@ -68,7 +70,7 @@ function buyAccel(){
 
         accelLevel.innerHTML ++;
 
-        qpc += parsedAccelIncrease;
+        qpc += parsedAccelIncrease*multiplier;
         parsedAccelIncrease = parseFloat((parsedAccelIncrease * 1.07).toFixed(2));
         if(parsedAccelIncrease >= 1000000){
             accelIncrease.innerHTML = (parsedAccelIncrease/1000000).toFixed(2) + "M";
@@ -103,7 +105,7 @@ function buyNucleus(){
 
         nucleusLevel.innerHTML ++;
 
-        qps += parsedNucleusIncrease;
+        qps += parsedNucleusIncrease*multiplier;
         if(parsedNucleusIncrease <= 10000){
             parsedNucleusIncrease = parseFloat((parsedNucleusIncrease * 3).toFixed(2));
         } else {
@@ -143,7 +145,7 @@ function buyAtom(){
 
         atomLevel.innerHTML ++;
 
-        aps += 1;
+        aps += 1*multiplier;
 
         parsedAtomCost *= 1.35;
         if(parsedAtomCost >= 1000000000000){
@@ -157,5 +159,23 @@ function buyAtom(){
         } else {
             atomCost.innerHTML = Math.round(parsedAtomCost);
         }
+    }
+}
+
+function resetLevels(){
+    accelLevel.innerHTML = 0;
+    nucleusLevel.innerHTML = 0;
+    atomLevel.innerHTML = 0;
+    qpc = 1;
+    qps = 0;
+    aps = 0;
+}
+
+function prestige(){
+    prestige_amount++;
+    quark.innerHTML = 0;
+    resetLevels();
+    for(i = 0; i < prestige_amount; i++){
+        multiplier*1.1;
     }
 }
