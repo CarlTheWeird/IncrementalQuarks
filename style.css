@@ -110,6 +110,10 @@ body {
     display: none;
 }
 
+#molecule {
+    display: none;
+}
+
 #game_over_text {
     text-align: center;
 }
