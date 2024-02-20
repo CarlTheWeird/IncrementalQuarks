@@ -55,7 +55,7 @@ function oneSecondLoop(){
     quark.innerHTML = Math.round(parsedQuark += qps);
     for(i = 0; i < aps; i++){
         accelLevel.innerHTML ++;
-        qpc += parsedAccelIncrease*1.3*multiplier;
+        qpc += parsedAccelIncrease*2*multiplier;
         parsedAccelIncrease = parseFloat((parsedAccelIncrease).toFixed(2));
         accelIncrease.innerHTML = parsedAccelIncrease;
     }
@@ -72,7 +72,13 @@ function buyAccel(){
         accelLevel.innerHTML ++;
 
         qpc += parsedAccelIncrease*multiplier;
-        parsedAccelIncrease = parseFloat((parsedAccelIncrease * 1.07).toFixed(2));
+        
+        if(accelLevel.innerHTML >= 250){
+            parsedAccelIncrease = parseFloat((parsedAccelIncrease * 1.2).toFixed(2));
+        } else {
+            parsedAccelIncrease = parseFloat((parsedAccelIncrease * 1.07).toFixed(2));
+        }
+        
         if(parsedAccelIncrease >= 1000000){
             accelIncrease.innerHTML = (parsedAccelIncrease/1000000).toFixed(2) + "M";
         } else if(parsedAccelIncrease >= 1000){
@@ -110,7 +116,7 @@ function buyNucleus(){
         if(parsedNucleusIncrease <= 10000){
             parsedNucleusIncrease = parseFloat((parsedNucleusIncrease * 3).toFixed(2));
         } else {
-            parsedNucleusIncrease = parseFloat((parsedNucleusIncrease * 1.07).toFixed(2));
+            parsedNucleusIncrease = parseFloat((parsedNucleusIncrease * 1.2).toFixed(2));
         }
 
         if(parsedNucleusIncrease >= 1000000){
