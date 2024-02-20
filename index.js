@@ -239,7 +239,7 @@ function doPrestige(){
         atom.style.display = "none";
         molecule.style.display = "none";
         prestige_amount++;
-        parsedQuark = 100000000000;
+        parsedQuark = 0;
         resetLevels();
         resetCost();
         prestige_cost*10;
