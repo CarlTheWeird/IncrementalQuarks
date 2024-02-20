@@ -113,10 +113,10 @@ function buyNucleus(){
         nucleusLevel.innerHTML ++;
 
         qps += parsedNucleusIncrease*multiplier;
-        if(parsedNucleusIncrease <= 10000){
+        if(parsedNucleusIncrease <= 5000){
             parsedNucleusIncrease = parseFloat((parsedNucleusIncrease * 3).toFixed(2));
         } else {
-            parsedNucleusIncrease = parseFloat((parsedNucleusIncrease * 1.2).toFixed(2));
+            parsedNucleusIncrease = parseFloat((parsedNucleusIncrease * 1.1).toFixed(2));
         }
 
         if(parsedNucleusIncrease >= 1000000){
@@ -179,8 +179,9 @@ function resetLevels(){
 }
 
 function doPrestige(){
+    prestige.style.display = "none";
     prestige_amount++;
-    quark.innerHTML = 0;
+    parsedQuark = 0;
     resetLevels();
     prestige_cost*10;
     for(i = 0; i < prestige_amount; i++){
