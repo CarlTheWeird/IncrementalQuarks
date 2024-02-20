@@ -34,6 +34,9 @@ let intervalID1 = setInterval(oneSecondLoop, 1000);
 let qpc = 1;
 let qps = 0;
 let aps = 0;
+let npfs = 0;
+
+let mole_control = 0;
 
 let prestige = document.querySelector(".prestige");
 let prestige_cost = 10000000000;
@@ -63,8 +66,11 @@ function oneSecondLoop(){
     for(i = 0; i < aps; i++){
         accelLevel.innerHTML ++;
         qpc += parsedAccelIncrease*2*multiplier;
-        parsedAccelIncrease = parseFloat((parsedAccelIncrease).toFixed(2));
-        accelIncrease.innerHTML = parsedAccelIncrease;
+    }
+    moleControl++;
+    if(moleControl == 5){
+        nucleusLevel.innerHTML ++;
+        qps += parsedNucleusIncrease*multiplier;
     }
 }
 
@@ -182,7 +188,7 @@ function buyMolecule(){
 
         moleLevel.innerHTML ++;
 
-        nps += 1*multiplier;
+        npfs += 1*multiplier;
 
         parsedMoleCost *= 2;
         if(parsedMoleCost >= 1000000000000){
