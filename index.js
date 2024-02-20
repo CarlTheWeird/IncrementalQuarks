@@ -172,7 +172,7 @@ function resetLevels(){
     aps = 0;
 }
 
-function prestige(){
+function doPrestige(){
     prestige_amount++;
     quark.innerHTML = 0;
     resetLevels();
