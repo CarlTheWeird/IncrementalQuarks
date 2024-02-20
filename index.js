@@ -71,9 +71,9 @@ function buyAccel(){
         qpc += parsedAccelIncrease;
         parsedAccelIncrease = parseFloat((parsedAccelIncrease * 1.07).toFixed(2));
         if(parsedAccelIncrease >= 1000000){
-            accelIncrease = (parsedAccelIncrease/1000000).toFixed(2) + "M";
+            accelIncrease.innerHTML = (parsedAccelIncrease/1000000).toFixed(2) + "M";
         } else if(parsedAccelIncrease >= 1000){
-            accelIncrease = (parsedAccelIncrease/1000).toFixed(2) + "K";
+            accelIncrease.innerHTML = (parsedAccelIncrease/1000).toFixed(2) + "K";
         } else {
             accelIncrease.innerHTML = parsedAccelIncrease;
         }
@@ -104,16 +104,16 @@ function buyNucleus(){
         nucleusLevel.innerHTML ++;
 
         qps += parsedNucleusIncrease;
-        if(parsedNucleusIncrease <= 1000){
+        if(parsedNucleusIncrease <= 10000){
             parsedNucleusIncrease = parseFloat((parsedNucleusIncrease * 3).toFixed(2));
         } else {
-            parsedNucleusIncrease = parseFloat((parsedNucleusIncrease * 0.8).toFixed(2));
+            parsedNucleusIncrease = parseFloat((parsedNucleusIncrease * 1.07).toFixed(2));
         }
 
         if(parsedNucleusIncrease >= 1000000){
-            nucleusIncrease = (parsedNucleusIncrease/1000000).toFixed(2) + "M";
+            nucleusIncrease.innerHTML = (parsedNucleusIncrease/1000000).toFixed(2) + "M";
         } else if(parsedNucleusIncrease >= 1000){
-            nucleusIncrease = (parsedNucleusIncrease/1000).toFixed(2) + "K";
+            nucleusIncrease.innerHTML = (parsedNucleusIncrease/1000).toFixed(2) + "K";
         } else {
             nucleusIncrease.innerHTML = parsedNucleusIncrease;
         }
