@@ -37,6 +37,7 @@ let aps = 0;
 let npfs = 0;
 
 let mole_control = 0;
+let show_mole_poss = false;
 
 let prestige = document.querySelector(".prestige");
 let prestige_cost = 10000000000;
@@ -179,6 +180,12 @@ function buyAtom(){
         } else {
             atomCost.innerHTML = Math.round(parsedAtomCost);
         }
+
+        if(show_mole_poss == true){
+            if(atomLevel >= 15){
+                molecule.style.display = flex;
+            }
+        }
     }
 }
 
@@ -223,6 +230,10 @@ function doPrestige(){
         prestige_cost*10;
         for(i = 0; i < prestige_amount; i++){
             multiplier*1.1;
+        }
+
+        if(prestige_amount > 2){
+            show_mole_poss = true;
         }
     } else {
         window.location = "game_over.html";
