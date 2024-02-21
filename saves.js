@@ -30,5 +30,8 @@ function save(){
 }
 
 function load(){
-    return JSON.parse(window.localStorage.getItem(SAVE_KEY));
+    var load_state = JSON.parse(window.localStorage.getItem(SAVE_KEY));
+    for(i = 0; i < load_state.length; i++){
+        state[i] = load_state[i];
+    }
 }
