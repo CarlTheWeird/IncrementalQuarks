@@ -1,4 +1,4 @@
-var state = {
+var state = [
     quark,
     accelCost,
     accelIncrease,
@@ -21,7 +21,7 @@ var state = {
     prestigeCost,
     prestigeAmount,
     multiplier
-}
+]
 
 var SAVE_KEY = 'save';
 
