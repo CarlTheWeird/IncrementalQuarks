@@ -30,6 +30,5 @@ function save(){
 }
 
 function load(){
-    var load_state = JSON.parse(localStorage.getItem(SAVE_KEY));
-    state = load_state;
+    return JSON.parse(localStorage.getItem(SAVE_KEY));
 }
