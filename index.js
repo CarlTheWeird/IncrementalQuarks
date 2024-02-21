@@ -1,82 +1,98 @@
-let quark = document.querySelector(".quark_amount");
-let parsedQuark = parseFloat(quark.innerHTML);
+var quark = document.querySelector(".quark_amount");
+var parsedQuark = parseFloat(quark.innerHTML);
 
-let accelCost = document.querySelector(".accel_cost");
-let parsedAccelCost = parseFloat(accelCost.innerHTML);
-let accelLevel = document.querySelector(".accel_level");
-let accelIncrease = document.querySelector(".accel_increase");
-let parsedAccelIncrease = parseFloat(accelIncrease.innerHTML);
+var accelCost = document.querySelector(".accel_cost");
+var parsedAccelCost = parseFloat(accelCost.innerHTML);
+var accelLevel = document.querySelector(".accel_level");
+var accelIncrease = document.querySelector(".accel_increase");
+var parsedAccelIncrease = parseFloat(accelIncrease.innerHTML);
 
-let nucleus = document.querySelector('#nucleus');
-let nucleusCost = document.querySelector(".nucleus_cost");
-let parsedNucleusCost = 5000;
-let nucleusLevel = document.querySelector(".nucleus_level");
-let nucleusIncrease = document.querySelector(".nucleus_increase");
-let parsedNucleusIncrease = parseFloat(nucleusIncrease.innerHTML);
+var nucleus = document.querySelector('#nucleus');
+var nucleusCost = document.querySelector(".nucleus_cost");
+var parsedNucleusCost = 5000;
+var nucleusLevel = document.querySelector(".nucleus_level");
+var nucleusIncrease = document.querySelector(".nucleus_increase");
+var parsedNucleusIncrease = parseFloat(nucleusIncrease.innerHTML);
 
-let atom = document.querySelector('#atom');
-let atomCost = document.querySelector(".atom_cost");
-let parsedAtomCost = 10000000;
-let atomLevel = document.querySelector(".atom_level");
-let atomIncrease = document.querySelector(".atom_increase");
-let parsedAtomIncrease = parseFloat(atomIncrease.innerHTML);
+var atom = document.querySelector('#atom');
+var atomCost = document.querySelector(".atom_cost");
+var parsedAtomCost = 10000000;
+var atomLevel = document.querySelector(".atom_level");
+var atomIncrease = document.querySelector(".atom_increase");
+var parsedAtomIncrease = parseFloat(atomIncrease.innerHTML);
 
-let molecule = document.querySelector('#molecule');
-let moleCost = document.querySelector(".mole_cost");
-let parsedMoleCost = 10000000000;
-let moleLevel = document.querySelector(".mole_level");
-let moleIncrease = document.querySelector(".mole_increase");
-let parsedMoleIncrease = parseFloat(atomIncrease.innerHTML);
+var molecule = document.querySelector('#molecule');
+var moleCost = document.querySelector(".mole_cost");
+var parsedMoleCost = 10000000000;
+var moleLevel = document.querySelector(".mole_level");
+var moleIncrease = document.querySelector(".mole_increase");
+var parsedMoleIncrease = parseFloat(atomIncrease.innerHTML);
 
-let intervalID = setInterval(gameLoop, 1);
-let intervalID1 = setInterval(oneSecondLoop, 1000);
+setInterval(gameLoop, 1);
+setInterval(oneSecondLoop, 1000);
 
-let qpc = 1;
-let qps = 0;
-let aps = 0;
-let npfs = 0;
+var qpc = 1;
+var qps = 0;
+var aps = 0;
+var npfs = 0;
 
-let mole_control = 0;
-let show_mole_poss = false;
+var mole_control = 0;
+var show_mole_poss = false;
 
-let prestige = document.querySelector(".prestige");
-let prestige_cost = 10000000000;
-let prestige_amount = 0;
-let multiplier = 1;
+var prestige = document.querySelector(".prestige");
+var prestigeCost = 10000000000;
+var prestigeAmount = 0;
+var multiplier = 1;
+
+function quantify(x){
+    if(x >= 1000000000000000000){
+        return (x / 1000000000000000000).toFixed(2) + "Qt";
+    } else if(x >= 1000000000000000){
+        return (x / 1000000000000000).toFixed(2) + "Qa";
+    } else if(x >= 1000000000000){
+        return (x / 1000000000000).toFixed(2) + "T";
+    } else if(x >= 1000000000){
+        return (x / 1000000000).toFixed(2) + "B";
+    } else if(x >= 1000000){
+        return (x / 1000000).toFixed(2) + "M";
+    } else if(x >= 1000){
+        return (x / 1000).toFixed(2) + "K";
+    } else {
+        return (x).toFixed(2);
+    }
+}
 
 function gameLoop(){
-    if(parsedQuark >= 1000000000000){
-        quark.innerHTML = (parsedQuark/1000000000000).toFixed(2) + "T";
-    } else if(parsedQuark >= 1000000000){
-        quark.innerHTML = (parsedQuark/1000000000).toFixed(2) + "B";
-    } else if(parsedQuark >= 1000000){
-        quark.innerHTML = (parsedQuark/1000000).toFixed(2) + "M";
-    } else if(parsedQuark >= 1000){
-        quark.innerHTML = (parsedQuark/1000).toFixed(2) + "K";
-    } else {
-        quark.innerHTML = Math.round(parsedQuark);
-    }
+    quark.innerHTML = quantify(parsedQuark);
 
-    if(parsedQuark >= prestige_cost){
+    if(parsedQuark >= prestigeCost){
         prestige.style.display = "block";
     }
 }
 
 function oneSecondLoop(){
-    quark.innerHTML = Math.round(parsedQuark += qps);
+    if(qps > 0){
+        quark.innerHTML = Math.round(parsedQuark += qps);
+    }
+
     for(i = 0; i < aps; i++){
         accelLevel.innerHTML ++;
         qpc += parsedAccelIncrease*2*multiplier;
     }
-    moleControl++;
-    if(moleControl == 5){
-        nucleusLevel.innerHTML ++;
-        qps += parsedNucleusIncrease*multiplier;
+
+    mole_control++;
+    if(mole_control == 5){
+        for(i = 0; i < npfs; i++){
+            nucleusLevel.innerHTML ++;
+            qps += parsedNucleusIncrease*multiplier;
+        }
+        mole_control = 0;
     }
 }
 
 function incrementQuark(){
-    quark.innerHTML = Math.round(parsedQuark += qpc);
+    more_quarks = parsedQuark += qpc;
+    quark.innerHTML = quantify(more_quarks);
 }
 
 function buyAccel(){
@@ -93,26 +109,10 @@ function buyAccel(){
             parsedAccelIncrease = parseFloat((parsedAccelIncrease * 1.07).toFixed(2));
         }
         
-        if(parsedAccelIncrease >= 1000000){
-            accelIncrease.innerHTML = (parsedAccelIncrease/1000000).toFixed(2) + "M";
-        } else if(parsedAccelIncrease >= 1000){
-            accelIncrease.innerHTML = (parsedAccelIncrease/1000).toFixed(2) + "K";
-        } else {
-            accelIncrease.innerHTML = parsedAccelIncrease;
-        }
+        accelIncrease.innerHTML = quantify(parsedAccelIncrease);
 
         parsedAccelCost *= 1.2;
-        if(parsedAccelCost >= 1000000000000){
-            accelCost.innerHTML = (parsedAccelCost/1000000000000).toFixed(2) + "T";
-        } else if(parsedAccelCost >= 1000000000){
-            accelCost.innerHTML = (parsedAccelCost/1000000000).toFixed(2) + "B";
-        } else if(parsedAccelCost >= 1000000){
-            accelCost.innerHTML = (parsedAccelCost/1000000).toFixed(2) + "M";
-        } else if(parsedAccelCost >= 1000){
-            accelCost.innerHTML = (parsedAccelCost/1000).toFixed(2) + "K";
-        } else {
-            accelCost.innerHTML = Math.round(parsedAccelCost);
-        }
+        accelCost.innerHTML = quantify(parsedAccelCost);
         
         if(accelLevel.innerHTML >= 10){
             nucleus.style.cssText = "display: flex;";
@@ -133,26 +133,10 @@ function buyNucleus(){
             parsedNucleusIncrease = parseFloat((parsedNucleusIncrease * 1.1).toFixed(2));
         }
 
-        if(parsedNucleusIncrease >= 1000000){
-            nucleusIncrease.innerHTML = (parsedNucleusIncrease/1000000).toFixed(2) + "M";
-        } else if(parsedNucleusIncrease >= 1000){
-            nucleusIncrease.innerHTML = (parsedNucleusIncrease/1000).toFixed(2) + "K";
-        } else {
-            nucleusIncrease.innerHTML = parsedNucleusIncrease;
-        }
+        nucleusIncrease.innerHTML = quantify(parsedNucleusIncrease);
 
         parsedNucleusCost *= 1.2;
-        if(parsedNucleusCost >= 1000000000000){
-            nucleusCost.innerHTML = (parsedNucleusCost/1000000000000).toFixed(2) + "T";
-        } else if(parsedNucleusCost >= 1000000000){
-            nucleusCost.innerHTML = (parsedNucleusCost/1000000000).toFixed(2) + "B";
-        } else if(parsedNucleusCost >= 1000000){
-            nucleusCost.innerHTML = (parsedNucleusCost/1000000).toFixed(2) + "M";
-        } else if(parsedNucleusCost >= 1000){
-            nucleusCost.innerHTML = (parsedNucleusCost/1000).toFixed(2) + "K";
-        } else {
-            nucleusCost.innerHTML = Math.round(parsedNucleusCost);
-        }
+        nucleusCost.innerHTML = quantify(parsedNucleusIncrease);
 
         if(nucleusLevel.innerHTML >= 10){
             atom.style.cssText = "display: flex;";
@@ -169,17 +153,7 @@ function buyAtom(){
         aps += 1*multiplier;
 
         parsedAtomCost *= 1.35;
-        if(parsedAtomCost >= 1000000000000){
-            atomCost.innerHTML = (parsedAtomCost/1000000000000).toFixed(2) + "T";
-        } else if(parsedAtomCost >= 1000000000){
-            atomCost.innerHTML = (parsedAtomCost/1000000000).toFixed(2) + "B";
-        } else if(parsedAtomCost >= 1000000){
-            atomCost.innerHTML = (parsedAtomCost/1000000).toFixed(2) + "M";
-        } else if(parsedAtomCost >= 1000){
-            atomCost.innerHTML = (parsedAtomCost/1000).toFixed(2) + "K";
-        } else {
-            atomCost.innerHTML = Math.round(parsedAtomCost);
-        }
+        atomCost.innerHTML = quantify(parsedAtomCost);
 
         if(show_mole_poss == true){
             if(atomLevel >= 15){
@@ -198,17 +172,7 @@ function buyMolecule(){
         npfs += 1*multiplier;
 
         parsedMoleCost *= 2;
-        if(parsedMoleCost >= 1000000000000){
-            moleCost.innerHTML = (parsedMoleCost/1000000000000).toFixed(2) + "T";
-        } else if(parsedMoleCost >= 1000000000){
-            moleCost.innerHTML = (parsedMoleCost/1000000000).toFixed(2) + "B";
-        } else if(parsedMoleCost >= 1000000){
-            atomCost.innerHTML = (parsedMoleCost/1000000).toFixed(2) + "M";
-        } else if(parsedMoleCost >= 1000){
-            moleCost.innerHTML = (parsedMoleCost/1000).toFixed(2) + "K";
-        } else {
-            moleCost.innerHTML = Math.round(parsedMoleCost);
-        }
+        moleCost.innerHTML = quantify(parsedMoleCost);
     }
 }
 
@@ -232,22 +196,34 @@ function resetCost(){
     parsedMoleCost = 10000000000;
 }
 
+function resetIncreases(){
+    accelIncrease.innerHTML = 1;
+    nucleusIncrease.innerHTML = 1;
+    atomIncrease.innerHTML = 1;
+    moleIncrease.innerHTML = 1;
+    parsedAccelIncrease = 1*multiplier;
+    parsedNucleusIncrease = 1*multiplier;
+    parsedAtomIncrease = 1*multiplier;
+    parsedMoleIncrease = 1*multiplier;
+}
+
 function doPrestige(){
-    if(prestige_amount < 5){
+    if(prestigeAmount < 4){
+        for(i = 0; i < prestigeAmount; i++){
+            multiplier*1.1;
+        }
+
         prestige.style.display = "none";
         nucleus.style.display = "none";
         atom.style.display = "none";
         molecule.style.display = "none";
-        prestige_amount++;
+        prestigeAmount++;
         parsedQuark = 0;
         resetLevels();
         resetCost();
-        prestige_cost*10;
-        for(i = 0; i < prestige_amount; i++){
-            multiplier*1.1;
-        }
-
-        if(prestige_amount > 2){
+        resetIncreases();
+        prestigeCost*10;
+        if(prestigeAmount > 2){
             show_mole_poss = true;
         }
     } else {
