@@ -117,3 +117,29 @@ body {
 #game_over_text {
     text-align: center;
 }
+
+#save_buttons {
+    display: flex;
+}
+
+#save_buttons button {
+    background-color: #3C3C3C;
+    border-radius: 5px;
+    padding: 10px;
+    margin-right: 10px;
+    color: white;
+    width: 150px;
+    height: 75px;
+    font-size: 35px;
+    border: 5px solid white;
+    text-align: center;
+}
+
+#save_buttons button:hover {
+    background-color: #4C4C4C;
+    cursor: pointer;
+}
+
+#save_buttons button:active {
+    opacity: 0.8;
+}
