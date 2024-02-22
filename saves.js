@@ -26,12 +26,12 @@ var state = [
 var SAVE_KEY = 'save';
 
 function save(){
-    localStorage.setItem(SAVE_KEY, JSON.stringify(state));
+    window.localStorage.setItem(SAVE_KEY, JSON.stringify(state));
     alert("Saved!");
 }
 
 function load(){
-    var load_state = JSON.parse(localStorage.getItem(SAVE_KEY));
+    var load_state = JSON.parse(window.localStorage.getItem(SAVE_KEY));
     
     for(i = -1; i < load_state.length; i++){
         state[i] = load_state[i];
