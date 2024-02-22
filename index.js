@@ -40,7 +40,8 @@ var mole_control = 0;
 var show_mole_poss = false;
 
 var prestige = document.querySelector(".prestige");
-var prestigeCost = 10000000000;
+var prestigeCost = document.querySelector("#prestige_cost");
+var parsedPrestigeCost = 10000000000;
 var prestigeAmount = 0;
 var multiplier = 1;
 
@@ -208,25 +209,28 @@ function resetIncreases(){
 }
 
 function doPrestige(){
-    if(prestigeAmount < 4){
-        for(i = 0; i < prestigeAmount; i++){
-            multiplier*1.1;
+    if(parsedQuark >= prestigeCost){
+        if(prestigeAmount < 4){
+            for(i = 0; i < prestigeAmount; i++){
+                multiplier*1.1;
+            }
+    
+            prestige.style.display = "none";
+            nucleus.style.display = "none";
+            atom.style.display = "none";
+            molecule.style.display = "none";
+            prestigeAmount++;
+            parsedQuark = 0;
+            resetLevels();
+            resetCost();
+            resetIncreases();
+            parsedPrestigeCost *= 10;
+            prestigeCost.innerHTML = quantify(parsedPrestigeCost);
+            if(prestigeAmount > 2){
+                show_mole_poss = true;
+            }
+        } else {
+            window.location = "game_over.html";
         }
-
-        prestige.style.display = "none";
-        nucleus.style.display = "none";
-        atom.style.display = "none";
-        molecule.style.display = "none";
-        prestigeAmount++;
-        parsedQuark = 0;
-        resetLevels();
-        resetCost();
-        resetIncreases();
-        prestigeCost*10;
-        if(prestigeAmount > 2){
-            show_mole_poss = true;
-        }
-    } else {
-        window.location = "game_over.html";
     }
 }
