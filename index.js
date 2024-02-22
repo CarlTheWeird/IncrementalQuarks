@@ -85,14 +85,14 @@ function oneSecondLoop(){
 
     for(i = 0; i < aps; i++){
         accelLevel.innerHTML ++;
-        qpc += parsedAccelIncrease*2*multiplier;
+        qpc += parsedAccelIncrease*2*parsedMultiplier;
     }
 
     mole_control++;
     if(mole_control == 5){
         for(i = 0; i < npfs; i++){
             nucleusLevel.innerHTML ++;
-            qps += parsedNucleusIncrease*multiplier;
+            qps += parsedNucleusIncrease*parsedMultiplier;
         }
         mole_control = 0;
     }
@@ -109,7 +109,7 @@ function buyAccel(){
 
         accelLevel.innerHTML ++;
 
-        qpc += parsedAccelIncrease*multiplier;
+        qpc += parsedAccelIncrease*parsedMultiplier;
         
         if(accelLevel.innerHTML >= 250){
             parsedAccelIncrease = parseFloat((parsedAccelIncrease * 1.2).toFixed(2));
@@ -134,7 +134,7 @@ function buyNucleus(){
 
         nucleusLevel.innerHTML ++;
 
-        qps += parsedNucleusIncrease*multiplier;
+        qps += parsedNucleusIncrease*parsedMultiplier;
         if(parsedNucleusIncrease <= 10000){
             parsedNucleusIncrease = parseFloat((parsedNucleusIncrease * 3).toFixed(2));
         } else {
@@ -158,7 +158,7 @@ function buyAtom(){
 
         atomLevel.innerHTML ++;
 
-        aps += 1*multiplier;
+        aps += 1*parsedMultiplier;
 
         parsedAtomCost *= 1.35;
         atomCost.innerHTML = quantify(parsedAtomCost);
@@ -177,7 +177,7 @@ function buyMolecule(){
 
         moleLevel.innerHTML ++;
 
-        npfs += 1*multiplier;
+        npfs += 1*parsedMultiplier;
 
         parsedMoleCost *= 2;
         moleCost.innerHTML = quantify(parsedMoleCost);
@@ -209,10 +209,10 @@ function resetIncreases(){
     nucleusIncrease.innerHTML = 1;
     atomIncrease.innerHTML = 1;
     moleIncrease.innerHTML = 1;
-    parsedAccelIncrease = 1*multiplier;
-    parsedNucleusIncrease = 1*multiplier;
-    parsedAtomIncrease = 1*multiplier;
-    parsedMoleIncrease = 1*multiplier;
+    parsedAccelIncrease = 1*parsedMultiplier;
+    parsedNucleusIncrease = 1*pasredMultiplier;
+    parsedAtomIncrease = 1*pasredMultiplier;
+    parsedMoleIncrease = 1*pasredMultiplier;
 }
 
 function doPrestige(){
