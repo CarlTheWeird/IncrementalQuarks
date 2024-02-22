@@ -136,7 +136,7 @@ function buyNucleus(){
         nucleusIncrease.innerHTML = quantify(parsedNucleusIncrease);
 
         parsedNucleusCost *= 1.2;
-        nucleusCost.innerHTML = quantify(parsedNucleusIncrease);
+        nucleusCost.innerHTML = quantify(parsedNucleusCost);
 
         if(nucleusLevel.innerHTML >= 10){
             atom.style.cssText = "display: flex;";
