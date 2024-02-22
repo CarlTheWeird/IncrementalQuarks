@@ -42,8 +42,11 @@ var show_mole_poss = false;
 var prestige = document.querySelector(".prestige");
 var prestigeCost = document.querySelector("#prestige_cost");
 var parsedPrestigeCost = 10000000000;
-var prestigeAmount = 0;
-var multiplier = 1;
+var prestigeInfo = document.querySelector(".prestige_info");
+var prestigeAmount = document.querySelector(".prestigeAmount");
+var parsedPrestigeAmount = 0;
+var multiplier = document.querySelector(".multiplier");
+var parsedMultiplier = 1;
 
 function quantify(x){
     if(x >= 1000000000000000000){
@@ -68,6 +71,10 @@ function gameLoop(){
 
     if(parsedQuark >= parsedPrestigeCost){
         prestige.style.display = "block";
+    }
+
+    if(parsedPrestigeAmount > 0){
+        prestigeInfo.style.display = "block";
     }
 }
 
@@ -209,17 +216,16 @@ function resetIncreases(){
 }
 
 function doPrestige(){
-    if(parsedQuark >= prestigeCost){
-        if(prestigeAmount < 4){
-            for(i = 0; i < prestigeAmount; i++){
-                multiplier*1.1;
-            }
-    
+    if(parsedQuark >= parsedPrestigeCost){
+        if(parsedPrestigeAmount < 4){
+            parsedMultiplier *= 1.1;
+            multiplier.innerHTML = quantify(parsedMultiplier);
             prestige.style.display = "none";
             nucleus.style.display = "none";
             atom.style.display = "none";
             molecule.style.display = "none";
-            prestigeAmount++;
+            parsedPrestigeAmount++;
+            prestigeAmount.innerHTML = parsedPrestigeAmount;
             parsedQuark = 0;
             resetLevels();
             resetCost();
