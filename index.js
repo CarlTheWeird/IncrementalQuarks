@@ -66,7 +66,7 @@ function quantify(x){
 function gameLoop(){
     quark.innerHTML = quantify(parsedQuark);
 
-    if(parsedQuark >= prestigeCost){
+    if(parsedQuark >= parsedPrestigeCost){
         prestige.style.display = "block";
     }
 }
@@ -128,7 +128,7 @@ function buyNucleus(){
         nucleusLevel.innerHTML ++;
 
         qps += parsedNucleusIncrease*multiplier;
-        if(parsedNucleusIncrease <= 20000){
+        if(parsedNucleusIncrease <= 10000){
             parsedNucleusIncrease = parseFloat((parsedNucleusIncrease * 3).toFixed(2));
         } else {
             parsedNucleusIncrease = parseFloat((parsedNucleusIncrease * 1.2).toFixed(2));
