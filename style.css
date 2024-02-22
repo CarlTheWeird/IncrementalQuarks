@@ -118,6 +118,14 @@ body {
     text-align: center;
 }
 
+#prestige_info {
+    display: none;
+    color: white;
+    border-radius: 5px;
+    border: 5px solid white;
+    padding: 10px;
+}
+
 #save_buttons {
     display: flex;
 }
