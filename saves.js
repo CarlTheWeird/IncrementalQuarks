@@ -1,33 +1,38 @@
-var state = [
-    parsedQuark,
-    parsedAccelCost,
-    parsedAccelIncrease,
-    accelLevel.innerHTML,
-    parsedNucleusCost,
-    parsedNucleusIncrease,
-    nucleusLevel.innerHTML,
-    parsedAtomCost,
-    parsedAtomIncrease,
-    atomLevel.innerHTML,
-    parsedMoleCost,
-    parsedMoleIncrease,
-    moleLevel.innerHTML,
-    qpc,
-    qps,
-    aps,
-    npfs,
-    mole_control,
-    show_mole_poss,
-    prestigeCost,
-    prestigeAmount,
-    multiplier
-];
+(
+    var saveQuark = 1;
+    var saveAC = parsedAccelCost;
+    var saveAI = parsedAccelIncrease;
+    var saveAL = accelLevel.innerHTML;
+    var saveNC = parsedNucleusCost;
+    var saveNI = parsedNucleusIncrease;
+    var saveNL = nucleusLevel.innerHTML;
+    var saveAtC = parsedAtomCost;
+    var saveAtI = parsedAtomIncrease;
+    var saveAtL = atomLevel.innerHTML;
+    var saveMC = parsedMoleCost;
+    var saveMI = parsedMoleIncrease;
+    var saveML = moleLevel.innerHTML;
+    var saveQpc = qpc;
+    var saveQps = qps;
+    var saveAps = aps;
+    var saveNpfs = npfs;
+    var saveMCon = mole_control;
+    var saveShowMP = show_mole_poss;
+    var savePC = prestigeCost;
+    var savePA = prestigeAmount;
+    var saveMult = multiplier;
+)
+
+var state = {
+    "quark": saveQuark;
+}
 
 var SAVE_KEY = 'save';
 
 function save(){
     window.localStorage.setItem(SAVE_KEY, JSON.stringify(state));
     alert("Saved!");
+    alert(state.quark);
 }
 
 function load(){
