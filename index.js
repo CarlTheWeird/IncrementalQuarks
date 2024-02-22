@@ -210,9 +210,9 @@ function resetIncreases(){
     atomIncrease.innerHTML = 1;
     moleIncrease.innerHTML = 1;
     parsedAccelIncrease = 1*parsedMultiplier;
-    parsedNucleusIncrease = 1*pasredMultiplier;
-    parsedAtomIncrease = 1*pasredMultiplier;
-    parsedMoleIncrease = 1*pasredMultiplier;
+    parsedNucleusIncrease = 1*parsedMultiplier;
+    parsedAtomIncrease = 1*parsedMultiplier;
+    parsedMoleIncrease = 1*parsedMultiplier;
 }
 
 function doPrestige(){
@@ -232,7 +232,7 @@ function doPrestige(){
             resetIncreases();
             parsedPrestigeCost *= 10;
             prestigeCost.innerHTML = quantify(parsedPrestigeCost);
-            if(prestigeAmount > 2){
+            if(parsedPrestigeAmount > 2){
                 show_mole_poss = true;
             }
         } else {
