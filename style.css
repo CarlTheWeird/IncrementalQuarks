@@ -118,7 +118,7 @@ body {
     text-align: center;
 }
 
-#prestige_info {
+.prestige_info {
     display: none;
     color: white;
     border-radius: 5px;
