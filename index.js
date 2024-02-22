@@ -164,7 +164,7 @@ function buyAtom(){
         atomCost.innerHTML = quantify(parsedAtomCost);
 
         if(show_mole_poss == true){
-            if(atomLevel >= 15){
+            if(atomLevel.innerHTML >= 15){
                 molecule.style.display = flex;
             }
         }
