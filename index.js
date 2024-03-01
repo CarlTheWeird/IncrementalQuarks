@@ -88,13 +88,15 @@ function oneSecondLoop(){
         qpc += parsedAccelIncrease*2*parsedMultiplier;
     }
 
-    mole_control++;
-    if(mole_control == 5){
-        for(i = 0; i < npfs; i++){
-            nucleusLevel.innerHTML ++;
-            qps += parsedNucleusIncrease*parsedMultiplier;
+    if(moleLevel > 0){
+        mole_control++;
+        if(mole_control == 5){
+            for(i = 0; i < npfs; i++){
+                nucleusLevel.innerHTML++;
+                qps += parsedNucleusIncrease*parsedMultiplier;
+            }
+            mole_control = 0;
         }
-        mole_control = 0;
     }
 }
 
@@ -137,8 +139,10 @@ function buyNucleus(){
         qps += parsedNucleusIncrease*parsedMultiplier;
         if(parsedNucleusIncrease <= 10000){
             parsedNucleusIncrease = parseFloat((parsedNucleusIncrease * 3).toFixed(2));
+        } else if(parsedNucleusIncrease >= 1000000) {
+            parsedNucleusIncrease = parseFloat((parsedNucleusIncrease * 1.001).toFixed(2));
         } else {
-            parsedNucleusIncrease = parseFloat((parsedNucleusIncrease * 1.2).toFixed(2));
+            parsedNucleusIncrease = parseFloat((parsedNucleusIncrease * 1.15).toFixed(2));
         }
 
         nucleusIncrease.innerHTML = quantify(parsedNucleusIncrease);
@@ -163,9 +167,9 @@ function buyAtom(){
         parsedAtomCost *= 1.35;
         atomCost.innerHTML = quantify(parsedAtomCost);
 
-        if(show_mole_poss == true){
-            if(atomLevel.innerHTML >= 15){
-                molecule.style.display = flex;
+        if(show_mole_poss){
+            if(atomLevel.innerHTML >= 10){
+                molecule.style.cssText = "display: flex;";
             }
         }
     }
@@ -224,13 +228,13 @@ function doPrestige(){
             nucleus.style.display = "none";
             atom.style.display = "none";
             molecule.style.display = "none";
-            parsedPrestigeAmount++;
+            parsedPrestigeAmount = parsedPrestigeAmount + 1;
             prestigeAmount.innerHTML = parsedPrestigeAmount;
             parsedQuark = 0;
             resetLevels();
             resetCost();
             resetIncreases();
-            parsedPrestigeCost *= 10;
+            parsedPrestigeCost = parsedPrestigeCost*50;
             prestigeCost.innerHTML = quantify(parsedPrestigeCost);
             if(parsedPrestigeAmount > 2){
                 show_mole_poss = true;
