@@ -181,7 +181,7 @@ function buyMolecule(){
 
         moleLevel.innerHTML ++;
 
-        npfs += 1*parsedMultiplier;
+        npfs = npfs + 1*parsedMultiplier;
 
         parsedMoleCost *= 2;
         moleCost.innerHTML = quantify(parsedMoleCost);
@@ -195,6 +195,7 @@ function resetLevels(){
     qpc = 1;
     qps = 0;
     aps = 0;
+    npfs = 0;
 }
 
 function resetCost(){
@@ -236,7 +237,7 @@ function doPrestige(){
             resetIncreases();
             parsedPrestigeCost = parsedPrestigeCost*50;
             prestigeCost.innerHTML = quantify(parsedPrestigeCost);
-            if(parsedPrestigeAmount > 2){
+            if(parsedPrestigeAmount = 2){
                 show_mole_poss = true;
             }
         } else {
