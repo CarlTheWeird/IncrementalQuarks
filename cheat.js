@@ -17,5 +17,9 @@ window.onkeydown = function(e) {
 
   if(wPressed && iPressed && nPressed){
     parsedQuark = 100000000000000;
+
+    wPressed = false;
+    iPressed = false;
+    nPressed = false;
   }
 }
