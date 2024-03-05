@@ -88,12 +88,12 @@ function oneSecondLoop(){
         qpc += parsedAccelIncrease*2*parsedMultiplier;
     }
 
-    if(moleLevel > 0){
+    if(parseFloat(moleLevel.innerHTML) > 0){
         mole_control++;
         if(mole_control == 5){
             for(i = 0; i < npfs; i++){
                 nucleusLevel.innerHTML++;
-                qps += parsedNucleusIncrease*parsedMultiplier;
+                qps += parsedNucleusIncrease*parsedMultiplier*1.5;
             }
             mole_control = 0;
         }
@@ -140,7 +140,7 @@ function buyNucleus(){
         if(parsedNucleusIncrease <= 10000){
             parsedNucleusIncrease = parseFloat((parsedNucleusIncrease * 3).toFixed(2));
         } else if(parsedNucleusIncrease >= 1000000) {
-            parsedNucleusIncrease = parseFloat((parsedNucleusIncrease * 1.001).toFixed(2));
+            parsedNucleusIncrease = parseFloat((parsedNucleusIncrease * 1.03).toFixed(2));
         } else {
             parsedNucleusIncrease = parseFloat((parsedNucleusIncrease * 1.15).toFixed(2));
         }
